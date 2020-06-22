@@ -1,3 +1,4 @@
 Manifest.toml
 *.pt
 /deps/build.log
+/deps/downloads/
