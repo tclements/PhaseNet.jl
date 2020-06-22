@@ -31,7 +31,7 @@ This will install the latest version of PyTorch in your `.julia` directory and t
 Here is an example of how the package can be used to detect P-waves from a set of seismic data. We will use the test data from the 2016 Mw 5.2 Anza, California sequence. For loading/downloading seismic data in Julia, we recommend using [SeisIO](https://github.com/jpjones76/SeisIO.jl).  First import the `PhaseNet` package: 
 
 ```julia
-julia> using PhaseNet
+julia> using PhaseNet, SeisIO 
 ```
 
 PhaseNet requires three-component seismic data. Here, we'll use test data set from the 2016 Mw 5.2 Anza, California sequence and apply minimal processing with [SeisIO](https://github.com/jpjones76/SeisIO.jl)
@@ -54,7 +54,7 @@ Here `window_samples` controls the number of samples per detection window (`1600
 Next load the model for p-wave detection 
 
 ```julia
-julia> model_P = load("P") 
+julia> model_P = load_model("P") 
 PyObject UNet(
   (relu): ReLU()
   (maxpool): MaxPool1d(kernel_size=2, stride=2, padding=0, dilation=1, ceil_mode=False)
@@ -118,5 +118,5 @@ julia> P_picks
  2016-06-10T23:58:34.258
  ```
  
- S-wave phase-detection can be achieved similarly by loading the s-wave model with `model_S = load("S")`. 
+ S-wave phase-detection can be achieved similarly by loading the s-wave model with `model_S = load_model("S")`. 
 
