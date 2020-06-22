@@ -21,7 +21,7 @@ const torch = PyNULL()
 const nn = PyNULL()
 
 function __init__()
-    copy!(torch, pyimport("torch"))
+    copy!(torch, pyimport_conda("torch","pytorch","pytorch"))
     copy!(nn, pyimport("torch.nn"))
     include(joinpath(@__DIR__, "UNet.jl"))
 end
