@@ -1,7 +1,8 @@
-export load, get_device, seisdata2torch, slide, detect, trigger_onset, get_picks
+export load_model, get_device, seisdata2torch, slide, detect, trigger_onset
+export get_picks, load_test_data
 
 """
-  load(phase;device=nothing)
+  load_model(phase;device=nothing)
 
 Load generalized-phase-detection model onto device.
 
@@ -11,7 +12,7 @@ Load generalized-phase-detection model onto device.
 # Keywords
 - `device::Union{PyObject,Nothing}`: Pytorch device - specify "gpu" or "cpu".
 """
-function load(phase::String;device::Union{PyObject,Nothing}=nothing)
+function load_model(phase::String;device::Union{PyObject,Nothing}=nothing)
     # check phase input
     if uppercase(phase) ∉ ["P","S"]
         error("Only available models are 'P' and 'S'.")
@@ -237,13 +238,12 @@ function get_picks(
     return picks, tt
 end
 
-function square(
-    x::AbstractArray,
-    a::Real,
-    b::Real;
-    max_len::Int=10^10,
-    max_len_delete::Bool=false,
-)
-    x .*= (a + b)
-    return x
+"""
+  load_test_data()
+
+Load 3-component seismic data from the 2016 Mw 5.2 Anza, California sequence.
+"""
+function load_test_data()
+    sacfiles = joinpath(dirname(@__FILE__),"..","deps","downloads","*.SAC")
+    return read_data("sac",sacfiles)
 end
