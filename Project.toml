@@ -10,6 +10,7 @@ PyCall = "438e738f-606a-5dbb-bf0a-cddfbfd45ab0"
 SeisIO = "b372bb87-02dd-52bb-bcf6-c30dd83fd342"
 
 [compat]
+PyCall = "1.91"
 SeisIO = "1.0"
 julia = "1"
 
